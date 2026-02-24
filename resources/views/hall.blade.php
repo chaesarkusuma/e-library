@@ -96,4 +96,9 @@
  
         </div>
     </div>
+
+    {{-- pagination --}}
+    <div class="mt-8">
+        {{ $books->links() }}
+    </div>
 @endsection

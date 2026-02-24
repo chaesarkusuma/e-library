@@ -15,6 +15,8 @@ class book extends Model
         'published_at' => 'datetime',
     ];
 
+    protected $with = ['author', 'category'];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
