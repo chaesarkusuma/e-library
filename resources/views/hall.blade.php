@@ -29,7 +29,7 @@
     <div class="max-w-4xl mx-auto mb-18">
         <div class="overflow-hidden rounded-lg shadow-lg max-h-100">
             @if ($books[0]->cover)
-                <img src="{{ Storage::url($books[0]->image) }}" alt="cover buku" class="w-full h-96 object-cover">
+                <img src="{{ Storage::url($books[0]->cover) }}" alt="cover buku" class="w-full h-96 object-cover">
             @else
             <img
                 src="https://picsum.photos/1200/400"

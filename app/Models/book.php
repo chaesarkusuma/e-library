@@ -48,4 +48,9 @@ class book extends Model
     {
         return $this->belongsTo(Author::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

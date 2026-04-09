@@ -57,24 +57,49 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        $title = "user - edit";
+
+        return view('dashboard.user.edit', compact('user', 'title'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $rules = [
+            'name' => 'required|string|min:2|max:255|regex:/^[A-Za-z\s]+$/',
+            'password' => 'required|min:5|max:255|string|regex:/[0-9]/',
+            'role' => 'required'
+        ];
+
+        if (request('slug') != $user->slug) {
+            $rules['slug'] = 'required|unique:users';
+        }
+        if (request('email') != $user->email) {
+            $rules['email'] = 'required|email:dns|unique:users|email';
+        }
+        if (request('username') != $user->username) {
+            $rules['username'] = 'required|unique:users|min:3|max:255|string';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        User::where('slug', $user->slug)->update($validatedData);
+
+        return redirect('/dashboard/user')->with('success', 'User has been updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+
+        return redirect('/dashboard/user')->with('success', 'User has been deleted!');
+
     }
 }

@@ -163,7 +163,7 @@
                             <a href="/" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Homepage</a>
                         </li>
                         <li>
-                            <form action="logout" method="post">
+                            <form action="/logout" method="post">
                                 @csrf
                                 <button onclick="return confirm('Apakah anada ingin logout?')" type="submit" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Sign out</button>
                             </form>

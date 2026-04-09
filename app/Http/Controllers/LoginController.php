@@ -21,6 +21,7 @@ class LoginController extends Controller
         // dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required|string|min:2|max:255|regex:/^[A-Za-z\s]+$/',
+            'slug' => 'required|string|unique:users',   
             'email' => 'required|email:dns|unique:users|email',
             'username' => 'required|unique:users|min:3|max:255|string',
             'password' => 'required|min:5|max:255|string|regex:/[0-9]/',
