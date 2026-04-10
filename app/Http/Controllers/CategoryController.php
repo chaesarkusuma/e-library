@@ -10,7 +10,7 @@ class CategoryController extends Controller
     public function index()
     {
         $title = "category";
-        $categories = Category::all();
+        $categories = Category::latest()->paguinate(9);
 
             return view('dashboard.category.index', compact('title', 'categories'));
     }
